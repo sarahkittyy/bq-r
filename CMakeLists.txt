@@ -18,6 +18,7 @@ target_include_directories(bq-r PUBLIC
 	"src/"
 	"lib/Box2D/Box2D"
 	"lib/imgui"
+	"lib/nlohmann"
 )
 target_link_libraries(bq-r
 	sfml-graphics
