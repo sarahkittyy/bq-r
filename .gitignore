@@ -1,2 +1,4 @@
 *.code-workspace
 build/
+compile_commands.json
+imgui.ini
