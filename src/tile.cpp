@@ -20,8 +20,7 @@ tile::tile()
 	  m_dir(dir::Up) {
 }
 
-tile::tile(tile::type t, tile
-		   : dir d)
+tile::tile(tile::type t, tile::dir d)
 	: m_type(t),
 	  m_attrs(TYPE_DEFAULT_ATTRS.at(t)),
 	  m_dir(d) {
