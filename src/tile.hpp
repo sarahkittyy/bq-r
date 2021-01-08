@@ -9,13 +9,15 @@ class tile {
 public:
 	/**
 	 * @brief the type of this tile
+	 *
+	 * @remarks please don't ever change these numbers
 	 */
 	enum type {
-		Air,
-		Block,
-		Spike,
-		Start,
-		End,
+		Air	  = 0,
+		Block = 1,
+		Spike = 2,
+		Start = 3,
+		End	  = 4,
 	};
 
 	/**
@@ -31,24 +33,18 @@ public:
 	 * @brief the direction this tile is facing
 	 */
 	enum dir {
-		Left,
-		Right,
-		Up,
-		Down
+		Left  = 0,
+		Right = 1,
+		Up	  = 2,
+		Down  = 3,
 	};
-
-	/**
-	 * @brief construct to an empty air tile
-	 *
-	 */
-	tile();
 
 	/**
 	 * @brief construct to a specific tile type
 	 *
 	 * @param t 
 	 */
-	tile(type t);
+	tile(type t = type::Air, dir d = dir::Up);
 
 	/**
 	 * @brief get this tile's type
@@ -89,21 +85,6 @@ public:
 	 * @param j valid tile json generated from serialize()
 	 */
 	void deserialize(const nlohmann::json& j);
-
-	/**
-	 * @brief convert a tile type into a string
-	 *
-	 * @param t
-	 */
-	static std::string type_to_str(type t);
-
-	/**
-	 * @brief convert a string into a tile type
-	 *
-	 * @param s the string representing the type
-	 * @return AIR if not found, else the type
-	 */
-	static type str_to_type(const std::string& s);
 
 private:
 	// the tile type
