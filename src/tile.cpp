@@ -17,7 +17,7 @@ inline tile::attrs operator|(tile::attrs a, tile::attrs b) {
 tile::tile()
 	: m_type(type::Air),
 	  m_attrs(TYPE_DEFAULT_ATTRS.at(type::Air)),
-	  m_dir(dir:Up) {
+	  m_dir(dir::Up) {
 }
 
 tile::tile(tile::type t,tile:dir d)
@@ -55,7 +55,7 @@ nlohmann::json tile::serialize() const {
 }
 
 void tile::deserialize(const nlohmann::json& j) {
-	m_type = j.at("type").get<std:int>();
-	m_attrs= j.at("atrrs").get<std:int>();
-	m_dir = j.at("dir").get<std:int>();
+	m_type = j.at("type").get<std::int>();
+	m_attrs= j.at("atrrs").get<std::int>();
+	m_dir = j.at("dir").get<std::int>();
 }
