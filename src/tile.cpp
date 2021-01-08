@@ -14,12 +14,6 @@ inline tile::attrs operator|(tile::attrs a, tile::attrs b) {
 	return static_cast<tile::attrs>(static_cast<int>(a) | static_cast<int>(b));
 }
 
-tile::tile()
-	: m_type(type::Air),
-	  m_attrs(TYPE_DEFAULT_ATTRS.at(type::Air)),
-	  m_dir(dir::Up) {
-}
-
 tile::tile(tile::type t, tile::dir d)
 	: m_type(t),
 	  m_attrs(TYPE_DEFAULT_ATTRS.at(t)),

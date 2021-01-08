@@ -38,12 +38,6 @@ public:
 	};
 
 	/**
-	 * @brief construct to an empty air tile
-	 *
-	 */
-	tile();
-
-	/**
 	 * @brief construct to a specific tile type
 	 *
 	 * @param t 
