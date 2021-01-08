@@ -11,11 +11,30 @@ public:
 	 * @brief the type of this tile
 	 */
 	enum type {
-		AIR,
-		BLOCK,
-		SPIKE,
-		START,
-		END,
+		Air,
+		Block,
+		Spike,
+		Start,
+		End,
+	};
+
+	/**
+	 * @brief tile attributes
+	 */
+	enum attrs {
+		Nil		= 0 << 0,
+		Solid	= 1 << 0,
+		Harmful = 1 << 1,
+	};
+
+	/**
+	 * @brief the direction this tile is facing
+	 */
+	enum dir {
+		Left,
+		Right,
+		Up,
+		Down
 	};
 
 	/**
@@ -41,8 +60,35 @@ public:
 	 * @brief set this tile's type
 	 *
 	 * @param t
+	 * @param refresh Update the attributes to the new type's default
 	 */
-	void set_type(type t);
+	void set_type(type t, bool refresh = true);
+
+	/**
+	 * @brief retrieve the tile's direction
+	 *
+	 */
+	dir get_dir() const;
+
+	/**
+	 * @brief update the tile's direction
+	 *
+	 * @param d the new direction
+	 */
+	void set_dir(dir d);
+
+	/**
+	 * @brief serialize this tile into a simple json object
+	 *
+	 */
+	nlohmann::json serialize() const;
+
+	/**
+	 * @brief overwrite this tile with the data found in the json obect
+	 *
+	 * @param j valid tile json generated from serialize()
+	 */
+	void deserialize(const nlohmann::json& j);
 
 	/**
 	 * @brief convert a tile type into a string
@@ -59,20 +105,13 @@ public:
 	 */
 	static type str_to_type(const std::string& s);
 
-	/**
-	 * @brief serialize this tile into a simple json object
-	 *
-	 */
-	nlohmann::json serialize() const;
-
-	/**
-	 * @brief overwrite this tile with the data found in the json obect
-	 *
-	 * @param j valid tile json generated from serialize()
-	 */
-	void deserialize(const nlohmann::json& j);
-
 private:
 	// the tile type
 	type m_type;
+
+	// tile attributes
+	int m_attrs;
+
+	// tile direction
+	dir m_dir;
 };
