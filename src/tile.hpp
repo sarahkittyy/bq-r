@@ -9,6 +9,8 @@ class tile {
 public:
 	/**
 	 * @brief the type of this tile
+	 *
+	 * @remarks please don't ever change these numbers
 	 */
 	enum type {
 		Air	  = 0,
