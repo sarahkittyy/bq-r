@@ -29,9 +29,6 @@ int app::run() {
 
 		ImGui::SFML::Update(m_window, imgui_clock.restart());
 		// render imgui here
-		ImGui::Begin("nya");
-		ImGui::Button("test");
-		ImGui::End();
 
 		ImGui::EndFrame();
 
