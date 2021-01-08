@@ -40,11 +40,11 @@ void tile::set_dir(tile::dir d) {
 }
 
 nlohmann::json tile::serialize() const {
-	json j = {
+	return {
 		{ "type", m_type },
 		{ "atrrs", m_attrs },
 		{ "dir", m_dir }
-	} return j;
+	};
 }
 
 void tile::deserialize(const nlohmann::json& j) {
