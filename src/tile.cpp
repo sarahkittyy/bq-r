@@ -15,12 +15,12 @@ inline tile::attrs operator|(tile::attrs a, tile::attrs b) {
 }
 
 tile::tile()
-	: m_type(0),
+	: m_type(type::Air),
 	  m_attrs(TYPE_DEFAULT_ATTRS.at(type::Air)),
-	  m_dir(0) {
+	  m_dir(dir:Left) {
 }
 
-tile::tile(tile::type t)
+tile::tile(tile::type t,tile:dir d)
 	: m_type(t),
 	  m_attrs(TYPE_DEFAULT_ATTRS.at(t)),
 	  m_dir(d) {
