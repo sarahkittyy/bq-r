@@ -2,14 +2,6 @@
 
 #include <unordered_map>
 
-static const std::unordered_map<tile::type, std::string> TYPE_STRS{
-	{ tile::Air, "Air" },
-	{ tile::Block, "Block" },
-	{ tile::Spike, "Spike" },
-	{ tile::Start, "Start" },
-	{ tile::End, "End" }
-};
-
 static const std::unordered_map<tile::type, int> TYPE_DEFAULT_ATTRS{
 	{ tile::Air, tile::Nil },
 	{ tile::Block, tile::Solid },
@@ -23,15 +15,15 @@ inline tile::attrs operator|(tile::attrs a, tile::attrs b) {
 }
 
 tile::tile()
-	: m_type(Air),
-	  m_attrs(TYPE_DEFAULT_ATTRS.at(Air)),
-	  m_dir(Up) {
+	: m_type(0),
+	  m_attrs(TYPE_DEFAULT_ATTRS.at(type::Air)),
+	  m_dir(0) {
 }
 
 tile::tile(tile::type t)
 	: m_type(t),
 	  m_attrs(TYPE_DEFAULT_ATTRS.at(t)),
-	  m_dir(Up) {
+	  m_dir(d) {
 }
 
 tile::type tile::get_type() const {
@@ -53,27 +45,17 @@ void tile::set_dir(tile::dir d) {
 	m_dir = d;
 }
 
-std::string tile::type_to_str(tile::type t) {
-	return TYPE_STRS.at(t);
-}
-
-tile::type tile::str_to_type(const std::string& s) {
-	auto found = std::find_if(TYPE_STRS.begin(), TYPE_STRS.end(), [&s](auto&& p) {
-		return p.second == s;
-	});
-	if (found == TYPE_STRS.end()) {
-		return Air;
-	} else {
-		return found->first;
-	}
-}
-
 nlohmann::json tile::serialize() const {
-	return {
-		{ "type", type_to_str(m_type) }
-	};
+	json j= {
+		{"type",m_type},
+		{"atrrs",m_attrs},
+		{"dir",m_dir}
+	}
+	return j;
 }
 
 void tile::deserialize(const nlohmann::json& j) {
-	m_type = str_to_type(j.at("type").get<std::string>());
+	m_type = j.at("type").get<std:int>();
+	m_attrs= j.at("atrrs").get<std:int>();
+	m_dir = j.at("dir").get<std:int>();
 }
