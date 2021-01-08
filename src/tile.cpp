@@ -48,7 +48,7 @@ nlohmann::json tile::serialize() const {
 }
 
 void tile::deserialize(const nlohmann::json& j) {
-	m_type	= j.at("type").get<std::int>();
-	m_attrs = j.at("atrrs").get<std::int>();
-	m_dir	= j.at("dir").get<std::int>();
+	m_type	= j.at("type").get<tile::type>();
+	m_attrs = j.at("atrrs").get<int>();
+	m_dir	= j.at("dir").get<tile::dir>();
 }
