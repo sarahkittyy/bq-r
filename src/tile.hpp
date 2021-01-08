@@ -84,14 +84,6 @@ public:
 	 */
 	void deserialize(const nlohmann::json& j);
 
-	/**
-	 * @brief convert a string into a tile type
-	 *
-	 * @param s the string representing the type
-	 * @return AIR if not found, else the type
-	 */
-	static type str_to_type(const std::string& s);
-
 private:
 	// the tile type
 	type m_type;
