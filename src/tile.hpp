@@ -11,11 +11,11 @@ public:
 	 * @brief the type of this tile
 	 */
 	enum type {
-		Air = 0,
+		Air	  = 0,
 		Block = 1,
 		Spike = 2,
 		Start = 3,
-		End = 4,
+		End	  = 4,
 	};
 
 	/**
@@ -48,7 +48,7 @@ public:
 	 *
 	 * @param t 
 	 */
-	tile(type t = type::Air,dir d = dir::Up);
+	tile(type t = type::Air, dir d = dir::Up);
 
 	/**
 	 * @brief get this tile's type

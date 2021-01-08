@@ -20,7 +20,8 @@ tile::tile()
 	  m_dir(dir::Up) {
 }
 
-tile::tile(tile::type t,tile:dir d)
+tile::tile(tile::type t, tile
+		   : dir d)
 	: m_type(t),
 	  m_attrs(TYPE_DEFAULT_ATTRS.at(t)),
 	  m_dir(d) {
@@ -46,16 +47,15 @@ void tile::set_dir(tile::dir d) {
 }
 
 nlohmann::json tile::serialize() const {
-	json j= {
-		{"type",m_type},
-		{"atrrs",m_attrs},
-		{"dir",m_dir}
-	}
-	return j;
+	json j = {
+		{ "type", m_type },
+		{ "atrrs", m_attrs },
+		{ "dir", m_dir }
+	} return j;
 }
 
 void tile::deserialize(const nlohmann::json& j) {
-	m_type = j.at("type").get<std::int>();
-	m_attrs= j.at("atrrs").get<std::int>();
-	m_dir = j.at("dir").get<std::int>();
+	m_type	= j.at("type").get<std::int>();
+	m_attrs = j.at("atrrs").get<std::int>();
+	m_dir	= j.at("dir").get<std::int>();
 }
