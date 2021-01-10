@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "resource.hpp"
+
 /**
  * @brief main app class
  */
@@ -23,4 +25,7 @@ public:
 private:
 	// main app window
 	sf::RenderWindow m_window;
+
+	// main app resource manager
+	resource m_r;
 };
