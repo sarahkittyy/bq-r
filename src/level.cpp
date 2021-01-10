@@ -36,6 +36,14 @@ const tile& level::get_tile(int x, int y) const {
 	return m_tiles[c2i(x, y)];
 }
 
+int level::width() const {
+	return m_width;
+}
+
+int level::height() const {
+	return m_height;
+}
+
 nlohmann::json level::serialize() const {
 	using nlohmann::json;
 

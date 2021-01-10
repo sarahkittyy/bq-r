@@ -44,6 +44,16 @@ public:
 	tile& get_tile(int x, int y);
 
 	/**
+	 * @brief get the level width
+	 */
+	int width() const;
+
+	/**
+	 * @brief get the level height
+	 */
+	int height() const;
+
+	/**
 	 * @brief convert this level's into a portable json format
 	 *
 	 */

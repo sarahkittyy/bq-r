@@ -20,10 +20,6 @@ tile::tile(tile::type t, tile::dir d)
 	  m_dir(d) {
 }
 
-tile::type tile::get_type() const {
-	return m_type;
-}
-
 void tile::set_type(tile::type t, bool refresh) {
 	m_type = t;
 	if (refresh) {
@@ -31,12 +27,26 @@ void tile::set_type(tile::type t, bool refresh) {
 	}
 }
 
-tile::dir tile::get_dir() const {
-	return m_dir;
+tile::type tile::get_type() const {
+	return m_type;
 }
 
 void tile::set_dir(tile::dir d) {
 	m_dir = d;
+}
+
+tile::dir tile::get_dir() const {
+	return m_dir;
+}
+
+sf::Vector2i tile::tex_loc(int tw) const {
+	/*
+	   for now, we're just assuming that the tiles
+	   are in the same order as in the tile::type enum
+	   maybe a more robust method will be necessary in the future but i hope not
+   */
+	int tid = static_cast<int>(m_type) - 1;
+	return sf::Vector2i(tid % tw, tid / tw);
 }
 
 nlohmann::json tile::serialize() const {

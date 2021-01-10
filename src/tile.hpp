@@ -2,6 +2,10 @@
 
 #include <json.hpp>
 
+#include <SFML/System/Vector2.hpp>
+
+#include "resource.hpp"
+
 /**
  * @brief one of the many tiles in a level
  */
@@ -47,12 +51,6 @@ public:
 	tile(type t = type::Air, dir d = dir::Up);
 
 	/**
-	 * @brief get this tile's type
-	 *
-	 */
-	type get_type() const;
-
-	/**
 	 * @brief set this tile's type
 	 *
 	 * @param t
@@ -61,10 +59,10 @@ public:
 	void set_type(type t, bool refresh = true);
 
 	/**
-	 * @brief retrieve the tile's direction
+	 * @brief get this tile's type
 	 *
 	 */
-	dir get_dir() const;
+	type get_type() const;
 
 	/**
 	 * @brief update the tile's direction
@@ -72,6 +70,23 @@ public:
 	 * @param d the new direction
 	 */
 	void set_dir(dir d);
+
+	/**
+	 * @brief retrieve the tile's direction
+	 *
+	 */
+	dir get_dir() const;
+
+	/**
+	 * @brief retrieve the texture coordinates that this tile type uses
+	 *
+	 * @param tw tilemap width, in tiles (not pixels!)
+	 *
+	 * @returns sf::Vector2i the top-left coordinate of the texture
+	 * @remarks normalized from 0-width, in tiles
+	 *	eg. if the tileset is 2x3 then 0<=x<2 and 0<=y<3 where x,y are integers
+	 */
+	sf::Vector2i tex_loc(int tw) const;
 
 	/**
 	 * @brief serialize this tile into a simple json object
