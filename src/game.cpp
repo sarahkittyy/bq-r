@@ -1,17 +1,15 @@
 #include "game.hpp"
 
-//NOTE: IMPORTANT TO UPDATE WHEN THE TILESET IS CHANGED
-const int game::TILEMAP_WIDTH	  = 2;
-const int game::TILEMAP_TILE_SIZE = 32;
-
-game::game(resource& r, const level& l)
+game::game(resource& r, const level& l, int tswidth)
 	: m_r(r),
 	  m_lvl(l),
 	  m_world(b2Vec2(0, -9.8f)),
 	  m_tstex(m_r.texture("assets/tileset.png")),
-	  m_render_size(TILEMAP_TILE_SIZE) {
+	  m_render_size(tswidth),
+	  m_ts_width(tswidth) {
 	m_static.setPrimitiveType(sf::Quads);
 	gen_static();
+	m_ts_tsize = m_tstex.getSize().x / tswidth;
 }
 
 game::~game() {
@@ -45,19 +43,19 @@ void game::gen_static() {
 				x * m_render_size,
 				(y + 1) * m_render_size);
 
-			sf::Vector2f tl = (sf::Vector2f)(t.tex_loc(TILEMAP_WIDTH));
+			sf::Vector2f tl = (sf::Vector2f)(t.tex_loc(m_ts_width));
 			a.texCoords		= sf::Vector2f(
-				tl.x * TILEMAP_TILE_SIZE,
-				tl.y * TILEMAP_TILE_SIZE);
+				tl.x * m_ts_tsize,
+				tl.y * m_ts_tsize);
 			b.texCoords = sf::Vector2f(
-				(tl.x + 1) * TILEMAP_TILE_SIZE,
-				tl.y * TILEMAP_TILE_SIZE);
+				(tl.x + 1) * m_ts_tsize,
+				tl.y * m_ts_tsize);
 			c.texCoords = sf::Vector2f(
-				(tl.x + 1) * TILEMAP_TILE_SIZE,
-				(tl.y + 1) * TILEMAP_TILE_SIZE);
+				(tl.x + 1) * m_ts_tsize,
+				(tl.y + 1) * m_ts_tsize);
 			d.texCoords = sf::Vector2f(
-				tl.x * TILEMAP_TILE_SIZE,
-				(tl.y + 1) * TILEMAP_TILE_SIZE);
+				tl.x * m_ts_tsize,
+				(tl.y + 1) * m_ts_tsize);
 
 			m_static.append(a);
 			m_static.append(b);
