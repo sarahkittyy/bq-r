@@ -75,14 +75,14 @@ void level::deserialize(const nlohmann::json& j) {
 }
 
 std::vector<level::body> level::optimize_bodies() const {
-	std::vector<level::body> bodies; //basic setup of variables
+	std::vector<level::body> bodies;   //basic setup of variables
 	int cur_level		= 0;
 	int prev_level		= 0;
 	tile::type cur_type = m_tiles[0].get_type();
 	int cur_start		= 0;
 	int cur_end			= 0;
 	int arrSize			= m_width * m_height;
-	for (int i = 1; i < arrSize; i++) { //initial loop through all the tiles joining tiles of the same type along the same height.
+	for (int i = 1; i < arrSize; i++) {	  //initial loop through all the tiles joining tiles of the same type along the same height.
 		cur_level = i / m_width;
 		if (cur_level == prev_level && cur_type == m_tiles[i].get_type() and cur_type != 0) {
 			cur_end = i % m_width;
@@ -108,25 +108,25 @@ std::vector<level::body> level::optimize_bodies() const {
 	}
 	int did_stuff = 1;
 
-	while (did_stuff) { //loop through the recently generated bodies vector and join all bodies that have the same start and end, that are also able to be joined into 1 body. not optimal but wokrs for now.
+	while (did_stuff) {	  //loop through the recently generated bodies vector and join all bodies that have the same start and end, that are also able to be joined into 1 body. not optimal but wokrs for now.
 		did_stuff = 0;
 		for (int i = 0; i < (int)bodies.size(); i++) {
 			for (int j = i + 1; j < (int)bodies.size(); j++) {
 				if (bodies[i].bounds.left == bodies[j].bounds.left && bodies[i].bounds.width == bodies[j].bounds.width && bodies[i].type == bodies[j].type) {
 					if (bodies[i].bounds.top + bodies[i].bounds.height == bodies[j].bounds.top || bodies[i].bounds.top == bodies[j].bounds.top + bodies[j].bounds.height) {
 						sf::IntRect r;
-						r.left	 = bodies[i].bounds.left;
-						r.top	 = std::min(bodies[j].bounds.top, bodies[i].bounds.top);
-						r.width	 = bodies[i].bounds.width;
-						r.height = bodies[j].bounds.height + bodies[i].bounds.height;
+						r.left			   = bodies[i].bounds.left;
+						r.top			   = std::min(bodies[j].bounds.top, bodies[i].bounds.top);
+						r.width			   = bodies[i].bounds.width;
+						r.height		   = bodies[j].bounds.height + bodies[i].bounds.height;
 						level::body temper = { r.top, bodies[j].type, r };
-						if (j == (int) bodies.size() - 1) {
+						if (j == (int)bodies.size() - 1) {
 							bodies.pop_back();
 						} else {
 							bodies[j] = bodies.back();
 							bodies.pop_back();
 						}
-						if (i == (int) bodies.size() - 1) {
+						if (i == (int)bodies.size() - 1) {
 							bodies.pop_back();
 						} else {
 							bodies[i] = bodies.back();
