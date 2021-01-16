@@ -1,4 +1,4 @@
-# bq-r
+# bq-r ![](https://img.shields.io/github/workflow/status/sarahkittyy/bq-r/CMake)
 
 platformer WIP repo
 
