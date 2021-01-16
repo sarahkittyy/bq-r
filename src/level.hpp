@@ -3,7 +3,7 @@
 #include <json.hpp>
 
 #include "tile.hpp"
-
+#include <SFML/Graphics/Rect.hpp>
 /**
  * @brief level class
  * 
@@ -16,6 +16,15 @@ public:
 	level(const level& other);
 	level(const nlohmann::json& data);
 	~level();
+	/**
+	*@brief struct to wrap joined tiles and their type as a IntRect and some attributes
+	*
+	*/
+	struct body {
+		int height;
+		tile::type type;
+		sf::IntRect bounds;
+	};
 
 	/**
 	 * @brief update a tile in the map
@@ -55,6 +64,12 @@ public:
 	 * @param j the level json (obtained from serialize()
 	 */
 	void deserialize(const nlohmann::json& j);
+
+	/**
+	*@brief convert the tiles in the tile map into rectangles for future rendering
+	*
+	*/
+	std::vector<level::body> optimize_bodies() const;
 
 private:
 	// size of the level

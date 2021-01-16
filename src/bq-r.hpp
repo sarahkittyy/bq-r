@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "level.hpp"
+
 /**
  * @brief main app class
  */
