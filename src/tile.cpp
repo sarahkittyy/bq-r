@@ -44,7 +44,7 @@ sf::Vector2i tile::tex_loc(int tw) const {
 	   for now, we're just assuming that the tiles
 	   are in the same order as in the tile::type enum
 	   maybe a more robust method will be necessary in the future but i hope not
-   */
+	*/
 	int tid = static_cast<int>(m_type) - 1;
 	return sf::Vector2i(tid % tw, tid / tw);
 }
