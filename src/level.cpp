@@ -113,6 +113,7 @@ std::vector<level::body> level::optimize_bodies() const {
 		for (int i = 0; i < (int)bodies.size(); i++) {
 			for (int j = i + 1; j < (int)bodies.size(); j++) {
 				if (bodies[i].bounds.left == bodies[j].bounds.left && bodies[i].bounds.width == bodies[j].bounds.width && bodies[i].type == bodies[j].type) {
+					if (bodies[i].bounds.top + bodies[i].bounds.height < bodies[j].bounds.top)break;
 					if (bodies[i].bounds.top + bodies[i].bounds.height == bodies[j].bounds.top || bodies[i].bounds.top == bodies[j].bounds.top + bodies[j].bounds.height) {
 						sf::IntRect r;
 						r.left			   = bodies[i].bounds.left;
@@ -120,20 +121,11 @@ std::vector<level::body> level::optimize_bodies() const {
 						r.width			   = bodies[i].bounds.width;
 						r.height		   = bodies[j].bounds.height + bodies[i].bounds.height;
 						level::body temper = { r.top, bodies[j].type, r };
-						if (j == (int)bodies.size() - 1) {
-							bodies.pop_back();
-						} else {
-							bodies[j] = bodies.back();
-							bodies.pop_back();
-						}
-						if (i == (int)bodies.size() - 1) {
-							bodies.pop_back();
-						} else {
-							bodies[i] = bodies.back();
-							bodies.pop_back();
-						}
-
 						bodies.push_back(temper);
+						bodies[i] = bodies.back();
+						bodies.pop_back();
+						bodies[j] = bodies.back();
+						bodies.pop_back();
 						did_stuff = 1;
 						break;
 					}
