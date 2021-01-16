@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-#include <imgui.h>
 #include <imgui-SFML.h>
+#include <imgui.h>
 
 app::app()
 	: m_window(sf::VideoMode(800, 600), "bq-r") {
@@ -40,9 +40,4 @@ int app::run() {
 	}
 
 	return 0;
-}
-
-int main() {
-	app a;
-	return a.run();
 }
