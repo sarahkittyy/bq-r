@@ -7,6 +7,7 @@ platformer WIP repo
 * `SFML 2.5`
 * `C++20`
 * `CMake v3.13+`
+* (OPTIONAL) `Catch2` - for testing
 
 ## building client
 
@@ -33,6 +34,16 @@ output is located in `./build`, run with the cwd in the root directory so any as
 cd ..
 ./build/bq-r
 ```
+
+## running the tests
+
+add `-DBUILD_TESTS=ON` to your cmake options when generating, i.e.
+
+```bash
+cmake -DBUILD_TESTS=ON ..
+```
+
+and then run the tests with `./build/test/bq-r-test` &lt;3
 
 ## backend
 
